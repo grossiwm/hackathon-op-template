@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.6.12 <0.9.0;
 
-import "openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "openzeppelin-contracts/contracts/token/ERC20/ERC20.sol";
 
-contract FarmStake is ERC20 {
+contract Stake is ERC20 {
     mapping(address => uint256) public staked; //carteira que coloca ou tira do stake
     mapping(address => uint256) private stakeTime; //tempo de stake em segundos
 
-    constructor() ERC20("FarmStake", "TEST") {
+    constructor() ERC20("Stake", "TEST") {
         _mint(msg.sender, 1000e12);
     }
 
