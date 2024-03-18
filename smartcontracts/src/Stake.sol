@@ -1,27 +1,27 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.6.12 <0.9.0;
 
-import "../lib/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol";
+import "openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract TesteStack is ERC20 {
+contract FarmStake is ERC20 {
     mapping(address => uint256) public staked; //carteira que coloca ou tira do stake
-    mapping(address => uint256) private stakeTime; //tempo de stack em segundos
+    mapping(address => uint256) private stakeTime; //tempo de stake em segundos
 
-    constructor() ERC20("TesteStack", "TEST") {
+    constructor() ERC20("FarmStake", "TEST") {
         _mint(msg.sender, 1000e12);
     }
 
     //funcao para executar a requisicao
     function claim() public {
         require(staked[msg.sender] > 0, "Quantidade invalida");
-        uint256 timeStack = block.timestamp - stakeTime[msg.sender];
-        uint256 reward = (staked[msg.sender] * timeStack) / 3.15e7; //Tempo em segundos por ano
+        uint256 timeStake = block.timestamp - stakeTime[msg.sender];
+        uint256 reward = (staked[msg.sender] * timeStake) / 3.15e7; //Tempo em segundos por ano
         _mint(msg.sender, reward);
         stakeTime[msg.sender] = block.timestamp;
     }
 
     //funcao para colocar em stake
-    function stack(uint256 amount) external {
+    function stake(uint256 amount) external {
         require(amount > 0, "Saldo insuficiente");
         require(balanceOf(msg.sender) >= amount, "Quantidade insuficiente");
         _transfer(msg.sender, address(this), amount);
