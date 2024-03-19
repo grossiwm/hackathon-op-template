@@ -7,7 +7,7 @@ contract Stake is ERC20 {
     mapping(address => uint256) public staked; //carteira que coloca ou tira do stake
     mapping(address => uint256) private stakeTime; //tempo de stake em segundos
 
-    constructor() ERC20("Stake", "TEST") {
+    constructor() ERC20("Stake", "FSK") {
         _mint(msg.sender, 1000e12);
     }
 
