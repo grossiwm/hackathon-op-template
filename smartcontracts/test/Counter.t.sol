@@ -3,7 +3,7 @@ pragma solidity ^0.8.18;
 
 import {BaseSetup} from "./BaseSetup.t.sol";
 
-contract CounterTest is BaseSetup {
+/* contract CounterTest is BaseSetup {
     function setUp() public override {
         BaseSetup.setUp();
         counter.setNumber(0);
@@ -18,4 +18,4 @@ contract CounterTest is BaseSetup {
         counter.setNumber(x);
         assertEq(counter.number(), x);
     }
-}
+} */

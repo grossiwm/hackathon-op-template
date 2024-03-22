@@ -1,14 +1,15 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.6.12 <0.9.0;
+pragma solidity >0.8.17 <0.8.20;
 
 import "openzeppelin-contracts/contracts/token/ERC20/ERC20.sol";
 import "./ParticipationTitle.sol";
 
-contract Stake is ERC20 {
+contract NewStake is ERC20 {
     mapping(address => uint256) public staked; //carteira que coloca ou tira do stake
     mapping(address => uint256) private stakeTime; //tempo de stack em segundos
-
+    address owner;
     constructor() ERC20("Stake", "FSK") {
+        owner = msg.sender;
         _mint(msg.sender, 1000e12);
     }
 
@@ -26,7 +27,5 @@ contract Stake is ERC20 {
     }
     function claimNFT() public view {
         require(stopStake() == true);
-        nft = new ParticipationTitle;
-        nft.createNFT(msg.sender, name, metadataURI);
     }
 }
